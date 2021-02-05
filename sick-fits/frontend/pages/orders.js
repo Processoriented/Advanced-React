@@ -1,5 +1,9 @@
+import Page from '../components/Page';
+
 export default function OrdersPage() {
-  return <div>
-    <p>Orders Page works!</p>
-  </div>
+  return (
+    <Page>
+      <p>Orders Page works!</p>
+    </Page>
+  );
 }

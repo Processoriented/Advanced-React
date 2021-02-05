@@ -1,5 +1,9 @@
+import Page from '../components/Page';
+
 export default function ProductsPage() {
-  return <div>
-    <p>Products Page works!</p>
-  </div>
+  return (
+    <Page>
+      <p>Products Page works!</p>
+    </Page>
+  );
 }

@@ -1,5 +1,9 @@
+import Page from '../components/Page';
+
 export default function AccountPage() {
-  return <div>
-    <p>Account Page works!</p>
-  </div>
+  return (
+    <Page>
+      <p>Account Page works!</p>
+    </Page>
+  );
 }
