@@ -9,6 +9,5 @@ export const User = list({
     email: text({ isRequired: true, isUnique: true }),
     password: password(),
     // TODO: add roles, cart, and orders
-  }
-
+  },
 });
