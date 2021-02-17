@@ -41,11 +41,19 @@ const UPDATE_PRODUCT_MUTATION = gql`
   }
 `;
 
-function UpdateProductForm({ Product }) {
-  const { inputs, handleChange, clearForm, resetForm } = useForm(Product);
-  const [updateProduct, { data, error, loading }] = useMutation(
-    UPDATE_PRODUCT_MUTATION
-  );
+export default function UpdateProduct({ id }) {
+  const { data, error, loading } = useQuery(SINGLE_PRODUCT_QUERY, {
+    variables: { id },
+  });
+  const [
+    updateProduct,
+    { data: uData, error: uError, loading: uLoading },
+  ] = useMutation(UPDATE_PRODUCT_MUTATION);
+
+  const { inputs, handleChange } = useForm(data?.Product);
+  if (loading) return <p>Loading...</p>;
+
+  console.log(inputs);
 
   return (
     <Form
@@ -60,15 +68,10 @@ function UpdateProductForm({ Product }) {
           },
         }).catch(console.error);
         // TODO: handle submit!!!
-        // await updateProduct();
-        // clearForm();
-        // Router.push({
-        //   pathname: `product/${data.createProduct.id}`,
-        // });
       }}
     >
-      <DisplayError error={error} />
-      <fieldset disabled={loading} aria-busy={loading}>
+      <DisplayError error={error || uError} />
+      <fieldset disabled={uLoading} aria-busy={uLoading}>
         <label htmlFor="name">
           Name
           <input
@@ -105,32 +108,6 @@ function UpdateProductForm({ Product }) {
       </fieldset>
     </Form>
   );
-}
-
-UpdateProductForm.propTypes = {
-  Product: PropTypes.shape({
-    id: PropTypes.string,
-    name: PropTypes.string,
-    price: PropTypes.number,
-    description: PropTypes.string,
-    photo: PropTypes.shape({
-      id: PropTypes.string,
-      image: PropTypes.shape({
-        publicUrlTransformed: PropTypes.string,
-      }),
-    }),
-  }),
-};
-
-export default function UpdateProduct({ id }) {
-  const { data, error, loading } = useQuery(SINGLE_PRODUCT_QUERY, {
-    variables: { id },
-  });
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <DisplayError error={error} />;
-
-  return <UpdateProductForm Product={data.Product} />;
 }
 
 UpdateProduct.propTypes = {
