@@ -52,9 +52,6 @@ export default function UpdateProduct({ id }) {
 
   const { inputs, handleChange } = useForm(data?.Product);
   if (loading) return <p>Loading...</p>;
-
-  console.log(inputs);
-
   return (
     <Form
       onSubmit={async (e) => {
@@ -67,7 +64,6 @@ export default function UpdateProduct({ id }) {
             price: inputs.price,
           },
         }).catch(console.error);
-        // TODO: handle submit!!!
       }}
     >
       <DisplayError error={error || uError} />
