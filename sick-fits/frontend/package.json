@@ -63,7 +63,10 @@
   "eslintConfig": {
     "extends": [
       "wesbos"
-    ]
+    ],
+    "rules": {
+      "allowForLoopAfterthoughts": true
+    }
   },
   "jest": {
     "setupFilesAfterEnv": [
