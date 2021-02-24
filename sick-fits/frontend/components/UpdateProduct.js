@@ -12,12 +12,6 @@ const SINGLE_PRODUCT_QUERY = gql`
       price
       description
       id
-      photo {
-        altText
-        image {
-          publicUrlTransformed
-        }
-      }
     }
   }
 `;
